@@ -1,4 +1,4 @@
-(defproject korma "0.3.1-SNAPSHOT"
+(defproject ceterumnet-korma "0.3.1-RC"
   :description "Tasty SQL for Clojure"
   :url "http://github.com/korma/Korma"
   :mailing-list {:name "Korma Google Group"
@@ -14,7 +14,7 @@
                  [org.clojure/java.jdbc "0.3.3"]]
 
   :min-lein-version "2.0.0"
-  
+
   :profiles {:dev {:dependencies [[gui-diff "0.4.0"]
                                   [postgresql "9.0-801.jdbc4"]
                                   [slamhound "1.3.1"]
