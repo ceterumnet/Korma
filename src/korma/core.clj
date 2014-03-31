@@ -687,11 +687,12 @@
 (defn- with-one-to-many [rel query ent body-fn]
   (let [fk-key (:fk-key rel)
         pk (get-in query [:ent :pk])
-        table (keyword (eng/table-alias ent))]
+        table (keyword (eng/table-alias ent))
+        the-db @db/_default]
     (post-query query 
                 (partial map 
                          #(assoc % table
-                                 (select ent
+                                 (select (assoc ent :db (or (:db ent) (assoc the-db :options @korma.config/options)))
                                          (body-fn)
                                          (where {fk-key (get % pk)})))))))
 
@@ -732,10 +733,11 @@
 
 (defn- with-many-to-many [{:keys [lfk rfk rpk join-table]} query ent body-fn]
   (let [pk (get-in query [:ent :pk])
-        table (keyword (eng/table-alias ent))]
+        table (keyword (eng/table-alias ent))
+        the-db @db/_default]
     (post-query query (partial map
                                #(assoc % table
-                                       (select ent
+                                       (select (assoc ent :db (or (:db ent) (assoc the-db :options @korma.config/options)))
                                                (join :inner join-table (= @rfk rpk))
                                                (body-fn)
                                                (where {@lfk (get % pk)})))))))
