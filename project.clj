@@ -1,4 +1,4 @@
-(defproject ceterumnet-korma "0.3.1-RC"
+(defproject ceterumnet-korma "0.3.1-RC2"
   :description "Tasty SQL for Clojure"
   :url "http://github.com/korma/Korma"
   :mailing-list {:name "Korma Google Group"
